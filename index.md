@@ -1,37 +1,52 @@
-## Welcome to GitHub Pages
+# import module from tkinter for UI
+import os,xlwrite
+from datetime import datetime;
+from tkinter import *
+import os
+from pathlib import Path
+from playsound import playsound
+# creating instance of TK
+root = Tk()
+#root.geometry("580x550")
+root.configure(background='white')
 
-You can use the [editor on GitHub](https://github.com/nisargadalja/AttendanceSystem/edit/gh-pages/index.md) to maintain and preview the content for your website in Markdown files.
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+def function1():
+    os.system("python gui2.py")
+    os.system("python training_dataset.py")
+def function2():
+    os.system("python training_dataset.py")
+def function3():
+    os.system("python recognizer2.py")
+    #playsound('sound.mp3')
 
-### Markdown
+def function5():
+    os.system("python gui3.py")
+    #os.startfile(os.getcwd() + "/developers/diet1frame1first.html");
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+def function6():
+    root.destroy()
 
-```markdown
-Syntax highlighted code block
-
-# Header 1
-## Header 2
-### Header 3
-
-- Bulleted
-- List
-
-1. Numbered
-2. List
-
-**Bold** and _Italic_ and `Code` text
-
-[Link](url) and ![Image](src)
-```
-
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
-
-### Jekyll Themes
-
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/nisargadalja/AttendanceSystem/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
-
-### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://docs.github.com/categories/github-pages-basics/) or [contact support](https://github.com/contact) and we’ll help you sort it out.
+def attend():
+    my_file = Path('firebase/attendance_files/attendance' + str(datetime.now().date()) + '.xls');
+    if my_file.is_file():
+    # for open fun4 attendance shit
+        os.startfile(os.getcwd() + "/firebase/attendance_files/attendance" + str(datetime.now().date()) + '.xls')
+    else:
+        l3 = Label(root, text="attendance is not taken yet.Take attendance then try again", bg="orange", fg="blue", font="lucida 10 bold",width="60", pady="4").grid(columnspan=3, row=12, pady="5")
+# stting title for the window
+root.title("ATTENDANCE MANAGEMENT USING FACE RECOGNITION")
+# creating a text label
+root.geometry("510x510")
+Label(root, text="ATTENDANCE MANAGEMENT SYSTEM", font=("times new roman", 20), fg="white", bg="maroon",height=2).grid(row=0, rowspan=4, columnspan=2, sticky=N + E + W + S,padx=5, pady=5)
+# creating first button here fg is font color and bg for background color
+Button(root, text="Registeration", font=("times new roman", 20), bg="#0D47A1", fg='white', command=function1).grid(row=5, columnspan=2, sticky=N + E + W + S, padx=5, pady=5)
+# creating second button
+Button(root, text="Train Dataset", font=("times new roman", 20), bg="#0D47A1", fg='white', command=function2).grid(row=6, columnspan=2, sticky=N + E + W + S, padx=5, pady=5)
+# creating third button
+Button(root, text="Recognize + Attendance", font=('times new roman', 20), bg="#0D47A1", fg="white",command=function3).grid(row=7, columnspan=2, sticky=N + E + W + S, padx=5, pady=5)
+# creating attendance button
+Button(root, text="Attendance Sheet", font=('times new roman', 20), bg="#0D47A1", fg="white", command=attend).grid(row=8, columnspan=2, sticky=N + E + W + S, padx=5, pady=5)
+Button(root, text="Teacher's login page", font=('times new roman', 20), bg="#0D47A1", fg="white", command=function5).grid(row=9,columnspan=2,sticky=N + E + W + S,padx=5,pady=5)
+Button(root, text="Exit", font=('times new roman', 20), bg="maroon", fg="white", command=function6).grid(row=10,columnspan=2,sticky=N + E + W + S,padx=5, pady=5)
+root.mainloop()
